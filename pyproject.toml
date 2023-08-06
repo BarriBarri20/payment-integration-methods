@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "payment-integration-methods"
+version = "0.1.0"
+description = ""
+authors = ["BarriBarri20 <akrambenghanem76@gmail.com>"]
+readme = "README.md"
+packages = [{include = "payment_integration_methods"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mollie-api-python = "^3.5.0"
+Flask = "^2.3.2"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
