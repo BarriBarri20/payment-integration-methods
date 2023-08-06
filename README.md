@@ -14,8 +14,12 @@ git clone https://github.com/your-username/payment-integration-methods.git
 ```
 
 2- Install the project dependencies using Poetry:
+
+```bash
 cd payment-integration-methods
 poetry install
+```
+
 3- Create a .env file in the project root directory and add your Mollie API key:
 
 ```bash
@@ -39,30 +43,25 @@ ngrok http 5000
 7- Copy the ngrok URL and paste it into .env.
 
 8- Create a customer with the following url:
+
+```
 https://<ngrok-url>/create-customer
+```
 
 9- Create an order for the customer with the following url:
+
+```
 https://<ngrok-url>/create-order
+```
 
 This will start the Flask web server and allow you to test the payment integration methods.
-
-Open your web browser and navigate to <http://localhost>:.
-
-Select a payment method from the list of available methods.
-
-Enter the required payment details, such as the amount and the customer information.
-
-Click the "Pay" button to initiate the payment process.
-
-Follow the instructions provided by the payment provider to complete the payment.
-
-Once the payment is complete, you will be redirected to a confirmation page.
 
 ## Usage
 
 This project provides examples of how to integrate payment methods using the Mollie API for now.
 
-Contributing
+## Contributing
+
 If you would like to contribute to this project, please follow these guidelines:
 
 Fork the repository and create a new branch for your changes.
