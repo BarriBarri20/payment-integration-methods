@@ -135,8 +135,8 @@ def create_order():
                 "consumerDateOfBirth": "1958-01-31",
                 "locale": "nl_NL",
                 "orderNumber": "1337",
-                "redirectUrl": f"{mollie_public_url}order-status?my_webshop_id={my_webshop_id}",
-                "webhookUrl": f"{mollie_public_url}order-webhook/{customer_id}",
+                "redirectUrl": f"https://{mollie_public_url}/order-status?my_webshop_id={my_webshop_id}",
+                "webhookUrl": f"https://{mollie_public_url}/order-webhook/",
                 "lines": [
                     {
                         "type": "physical",
