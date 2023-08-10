@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+
+<body>
+
+  <!-- post the prices  -->
+
+  <form method="post" action="/submit-items">
+
+    <!-- build a list of items that if item is checked it will be considered with his value -->
+
+    <ul>
+      {% for item in items %}
+      <li>
+        <input type="checkbox" name="items[]" value="{{ item.id }}">
+        {{ item.name }} - {{ item.price }}
+      </li>
+      {% endfor %}
+      
+    </ul>
+
+    <button type="submit">Submit</button>
+  </form>
+
+
+</body>
+
+</html>

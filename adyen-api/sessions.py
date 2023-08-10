@@ -17,26 +17,24 @@ Parameters
 '''
 
 
-def adyen_sessions(host_url):
+def adyen_sessions(request):
     adyen = Adyen.Adyen()
     adyen.payment.client.xapikey = get_adyen_api_key()
     adyen.payment.client.platform = "test"  # change to live for production
     adyen.payment.client.merchant_account = get_adyen_merchant_account()
 
-    request = {}
+    # request['amount'] = {"value": "10000", "currency": "EUR"}  # amount in minor units
+    # request['reference'] = f"Reference {uuid.uuid4()}"  # This is can be helpful for linking to your user
+    # # set redirect URL required for some payment methods
+    # request['returnUrl'] = f"{host_url}/redirect?shopperOrder=myRef"
+    # request['countryCode'] = "NL"
 
-    request['amount'] = {"value": "10000", "currency": "EUR"}  # amount in minor units
-    request['reference'] = f"Reference {uuid.uuid4()}"  # provide your unique payment reference
-    # set redirect URL required for some payment methods
-    request['returnUrl'] = f"{host_url}/redirect?shopperOrder=myRef"
-    request['countryCode'] = "NL"
+    # # set lineItems: required for some payment methods (ie Klarna)
+    # request['lineItems'] = \
+    #     [{"quantity": 1, "amountIncludingTax": 5000, "description": "Sunglasses"}, # amount in minor units
+    #      {"quantity": 1, "amountIncludingTax": 5000, "description": "Headphones"}] # amount in minor units
 
-    # set lineItems: required for some payment methods (ie Klarna)
-    request['lineItems'] = \
-        [{"quantity": 1, "amountIncludingTax": 5000, "description": "Sunglasses"}, # amount in minor units
-         {"quantity": 1, "amountIncludingTax": 5000, "description": "Headphones"}] # amount in minor units
-
-    request['merchantAccount'] = get_adyen_merchant_account()
+    # request['merchantAccount'] = get_adyen_merchant_account()
 
     result = adyen.checkout.payments_api.sessions(request)
 

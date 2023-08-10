@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+
+<body>
+    <form method="POST" action="/cart">
+
+        <!-- checkbox -->
+        {% for item_id, item in items.items() %}
+        <br>
+        <input type="checkbox" name="{{ item_id }}" value="{{ item.quantity }}">
+        <label>{{ item.name }} - with a price of {{ item.price }} and quantity of {{ item.quantity }}</label>
+        {% endfor %}
+        <br>
+        <button type="submit">Pay it!</button>
+    </form>
+</body>
+
+</html>
