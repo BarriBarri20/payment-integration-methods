@@ -94,3 +94,9 @@ def submit_items():
         return f"Total price: {total_price}"
     else:
         return "Error ea"
+
+
+@app.route("/result/<result>")
+def payment(result):
+    return flask.render_template("result.html", result=result)
+    
