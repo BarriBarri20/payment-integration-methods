@@ -99,4 +99,9 @@ def submit_items():
 @app.route("/result/<result>")
 def payment(result):
     return flask.render_template("result.html", result=result)
-    
+
+@app.route("/webhook-test", methods=["POST"])
+def webhook_test():
+    request = flask.request
+    print(request.json)
+    return "OK"
