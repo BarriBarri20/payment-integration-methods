@@ -52,19 +52,37 @@ def cart():
 
         # Create order and associate the customer, price, date of purchase and all related information
 
-        order = {"price": order_price, "purchased_at": time.time()}
+        host_url = flask.request.host_url
+
+        print("*" * 100)
+        print(host_url)
+
+        order = {
+            "reference": "order-1",
+            "amount": {"value": order_price, "currency": "EUR"},
+            "returnUrl": f"{host_url}checkout?shopperOrder=order-1",
+            "merchantAccount": os.getenv("ADYEN_MERCHANT_ACCOUNT"),
+        }
+
+        # ...
+        # save the order in the database
+        # ...
 
         # https://docs.adyen.com/online-payments/build-your-integration/additional-use-cases/#sessions-flow-a-single-api-request
 
         # Create a session for the order
-        session_id = adyen_sessions.create_session(order)
+        session = adyen_sessions(order)
 
-        return f"Order price: {order_price}"
+        return flask.render_template(
+            "payment.html",
+            session=session,
+            client_key=os.getenv("ADYEN_CLIENT_KEY"),
+        )
 
     return flask.render_template("cart.html", items=items)
 
 
-@app.route("/submit-items", methods=["POST", "GET"])
+@app.route("/checkout", methods=["POST", "GET"])
 def submit_items():
     request = flask.request
     if request.method == "POST":
